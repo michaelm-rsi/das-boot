@@ -16,8 +16,7 @@ import com.boot.repository.ShipwreckRepository;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = App.class)
-//@WebAppConfiguration
+@SpringBootTest
 public class ShipwreckRepositoryIntegrationTest {
 	
 	@Autowired
