@@ -1,12 +1,9 @@
-logging.level.org.springframework:
-  web: DEBUG
-
 server:
   address: localhost
-  port: 8080
+  port: 80
 
 spring.h2.console:
-  enabled: true
+  enabled: false
   path: /h2
 
 spring:
