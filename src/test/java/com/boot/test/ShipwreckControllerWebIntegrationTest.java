@@ -1,4 +1,4 @@
-package com.boot;
+package com.boot.test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -25,27 +25,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ShipwreckControllerWebIntegrationTest {
 	@Value("${server.address}")
 	private String serverHost;
-	
+
 	@Value("${server.port}")
 	private String serverPort;
-	
+
 	@Test
 	public void testListAll() throws IOException {
 		TestRestTemplate restTemplate = new TestRestTemplate();
-		
+
 		UriComponentsBuilder url = UriComponentsBuilder.newInstance()
 			.scheme("http")
 			.host(serverHost)
 			.port(serverPort)
 			.path("/api/v1/shipwrecks");
-		
+
 		ResponseEntity<String> response = restTemplate.getForEntity(url.toUriString(), String.class);
-		
+
 		assertThat( response.getStatusCode(), equalTo(HttpStatus.OK));
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode responseJson = objectMapper.readTree(response.getBody());
-		
+
 		assertThat( responseJson.isMissingNode(), is(false));
 		assertThat( responseJson.toString(), equalTo("[]"));
 	}

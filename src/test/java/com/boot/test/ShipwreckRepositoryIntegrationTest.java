@@ -1,4 +1,4 @@
-package com.boot;
+package com.boot.test;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import com.boot.repository.ShipwreckRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ShipwreckRepositoryIntegrationTest {
-	
+
 	@Autowired
 	private ShipwreckRepository shipwreckRepository;
 

@@ -1,4 +1,4 @@
-package com.boot;
+package com.boot.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,6 +6,9 @@ import org.junit.runner.JUnitCore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import cucumber.api.java.After;
@@ -13,14 +16,16 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
-public class CucumberStepDefinitions {
+@SpringBootTest(webEnvironment=WebEnvironment.DEFINED_PORT)
+@ContextConfiguration
+public class StepDefinitions {
 	private WebDriver driver;
-	
+
 	@Before
 	public void setup() {
 		JUnitCore.runClasses(SpringRunner.class);
 		setupLocal();
-//BrowserStack - worry with later.		
+//BrowserStack - worry with later.
 //		DesiredCapabilities capability = DesiredCapabilities.chrome();
 //	    capability.setPlatform(Platform.WINDOWS);
 //	    driver = new RemoteWebDriver(
@@ -28,7 +33,7 @@ public class CucumberStepDefinitions {
 //	      capability
 //	    );
 	}
-	
+
 	public void setupLocal() {
 		System.out.println("Setup Local");
 		System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
@@ -36,7 +41,7 @@ public class CucumberStepDefinitions {
 		System.out.println("Setup Local - complete");
 
 	}
-	
+
 	@After
 	public void after() throws Exception {
 		driver.quit();
